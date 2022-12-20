@@ -34,6 +34,32 @@ public class TestPlayerMovement {
     }
 
 
+    [UnityTest] //This test was made before the code
+    public IEnumerator TestPlayerMovementJump() {
+        yield return new WaitForFixedUpdate();
+        Assert.AreEqual(player.transform.position.y, 0.5f);
+        Debug.Log("Checked start Y position");
+
+        player.Jump();
+
+        yield return new WaitForFixedUpdate();
+
+        Assert.Greater(player.transform.position.y, 0.5f);
+        Debug.Log("Player movement is higher than start");
+
+        yield return new WaitForSeconds(1f);
+
+        Assert.Greater(player.transform.position.y, 0.5f);
+        Debug.Log("after 1 second still jumping");
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log(player.transform.position.y);
+        Assert.IsTrue(player.transform.position.y == 0.5f);
+        Debug.Log("Jump ended after 2 seconds");
+        yield return null;
+    }
+
+
     [UnityTest]
     public IEnumerator TestPlayerMovementLeft() {
         float xPos = player.transform.position.x;
@@ -71,32 +97,6 @@ public class TestPlayerMovement {
         Debug.Log("Shouldn't move again");
         Assert.AreEqual(xPos, player.transform.position.x);
         Debug.Log("Succesful boundry");
-        yield return null;
-    }
-
-
-    [UnityTest]
-    public IEnumerator TestPlayerMovementJump() {
-        yield return new WaitForFixedUpdate();
-        Assert.AreEqual(player.transform.position.y, 0.5f);
-        Debug.Log("Checked start Y position");
-
-        player.Jump();
-
-        yield return new WaitForFixedUpdate();
-
-        Assert.Greater(player.transform.position.y, 0.5f);
-        Debug.Log("Player movement is higher than start");
-
-        yield return new WaitForSeconds(1f);
-
-        Assert.Greater(player.transform.position.y, 0.5f);
-        Debug.Log("after 1 second still jumping");
-
-        yield return new WaitForSeconds(1f);
-        Debug.Log(player.transform.position.y);
-        Assert.IsTrue(player.transform.position.y == 0.5f);
-        Debug.Log("Jump ended after 2 seconds");
         yield return null;
     }
 }
