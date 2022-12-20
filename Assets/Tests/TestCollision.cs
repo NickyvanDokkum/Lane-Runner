@@ -35,7 +35,7 @@ public class TestCollision
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
         Assert.IsTrue(collectible == null);
-        Assert.AreEqual(PointCounter.score, DistanceCounter.distance + PointCounter.collectibleScore);
+        Assert.AreEqual((int)PointCounter.score, (int)DistanceCounter.distance + PointCounter.collectibleScore);
         Debug.Log("Score succesfully added");
 
         yield return null;
@@ -68,6 +68,7 @@ public class TestCollision
         Assert.NotNull(obstacle);
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
+        yield return null;
         Assert.IsTrue(player == null);
 
         player = GameObject.Find("Player").GetComponent<Coilision>();
